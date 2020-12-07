@@ -5,7 +5,7 @@
 # Kullanım Bilgileri
 *Yeni Kişi Ekleme <br>
 Kasaya erişim için kişi bilgileri ve yüz tanıma işlemi gerçekleştirilmelidir. Eğer kişi kayıtlı değilse buradan kayıt edebilirsiniz. Kayıt işlemi için kişinin Adı-Soyadı-TC no gereklidir. Eğer TC no daha önce kayıtlı ise işlem yapılamaz. Bilgiler girildikten sonra yüzünüz tamamen açık ve belirgin olacak şekilde kameraya bakılmalıdır. Bu işlem birkaç dakika sürebilir. Kişiyi kayıt işlemi sonrası buradan kontrol edebilirsiniz.<br>
-# Not: Kasada tanımlı daimi kullanıcı asla pasif olamaz veya silinemez. Bu kullanıcı tanımı genelde kasa sahibidir.
+<b>Not:</b> Kasada tanımlı daimi kullanıcı asla pasif olamaz veya silinemez. Bu kullanıcı tanımı genelde kasa sahibidir.
 
 
 *Kişi Listesi<br>
