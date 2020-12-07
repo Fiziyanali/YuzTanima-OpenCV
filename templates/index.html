@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <title>Giriş Yap</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+  </head>
+  <body>
+  <!-- FORM -->
+	<form autocomplete="off" action=" {{ url_for('login') }}" method='POST'>
+	  <h4>Giriş Paneli<h4>
+	  <div class="form-group">
+		<input type="text" class="form-control" name="mail" placeholder="Kullanıcı Adı">
+	  </div>
+	  <div class="form-group">
+		<input type="password" class="form-control" name="sifre" placeholder="Şifre">
+	  </div>
+	  <button type="submit" class="btn btn-danger">Giriş</button>
+	  <br>
+	  <!-- Uyarı Mesajı -->
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				{% for message in messages %}
+			
+	<h5 style="color:red">{{message.decode('utf-8')}}</h5>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+	</form>
+  </body>
+</html>

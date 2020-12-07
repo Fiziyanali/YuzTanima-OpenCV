@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <title>Anasayfa</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+  </head>
+  <body>
+  <!-- LİNKLER -->
+
+	<br><a href="{{ url_for ('yeni') }}" class="btn btn-primary">Yeni Kişi Ekle</a>
+	<a href="{{ url_for ('liste') }}" class="btn btn-primary">Kişi Listesi</a>
+	<a href="{{ url_for ('yuzTanima') }}" class="btn btn-primary">Kasaya Erişim</a>
+	<a href="{{ url_for ('hListe') }}" class="btn btn-primary">Hareketleri Görüntüle</a><br><br><br>
+	<a href="{{ url_for ('bilgilendirme') }}" class="btn btn-success">Kullanım Bilgileri </a>
+	<br><br><a href="{{ url_for ('cikis') }}" class="btn btn-danger">Çıkış Yap</a><br><br>
+	
+
+	
+	<br>
+	<!-- Uyarı Mesajı
+    {% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+				<h5 style="color:red">{{message.decode('utf-8')}}</h5>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}   -->
+  </body>
+</html>

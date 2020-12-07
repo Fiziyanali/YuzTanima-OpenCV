@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <title>Bilgilendirme</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <style>
+	*{
+	    text-align:justify
+	}
+	.bilgi{
+	    padding:5px 10px
+	}
+    </style>
+
+</head>
+  <body>
+  <!--  -->
+<div class="bilgi">
+	<h3 style="color:#000066;font-weight:bold">Kullanım Bilgileri</h3>
+<br>
+	<h5 style="color:darkblue;font-weight:bold">*Yeni Kişi Ekleme</h5>
+	<p>Kasaya erişim için kişi bilgileri ve yüz tanıma işlemi gerçekleştirilmelidir.
+Eğer kişi kayıtlı değilse <a target="_blank" href="{{url_for('yeni')}}">buradan</a> kayıt edebilirsiniz.
+Kayıt işlemi için kişinin Adı-Soyadı-TC no gereklidir. Eğer TC no daha önce kayıtlı ise işlem yapılamaz.
+Bilgiler girildikten sonra yüzünüz tamamen açık ve belirgin olacak şekilde kameraya bakılmalıdır.
+Bu işlem birkaç dakika sürebilir. Kişiyi kayıt işlemi sonrası <a target="_blank" href="{{url_for('liste')}}">buradan</a> kontrol edebilirsiniz.
+<br><b style="color:red;">Not:</b> Kasada tanımlı daimi kullanıcı asla pasif olamaz veya silinemez. Bu kullanıcı tanımı genelde kasa sahibidir.
+
+</p>
+
+<br>
+<h5 style="color:darkblue;font-weight:bold">*Kişi Listesi</h5>
+	<p>Sistemde kayıtlı olan kişilerin listesi bu ekranda yer alır. Aktif ve pasif kişiler ayrı tablolarda listelenir. Kişiler üzerinde düzenleme ve silme işlemleri yapılabilmektedir.
+<br><br><b style="color:red;">Aktif Kişiler:</b> Sistemde kayıtlı ve kasaya erişimi olan kişi listesidir. Bu kişiler istenilen takdirde pasif yapılabilir, bilgileri düzenlenebilir ve silinebilir.
+<br><br><b style="color:red;">Pasif Kişiler:</b> Sistemde kayıtlı ve kasaya erişimi <b>olmayan</b> kişi listesidir. Pasif olan kişilerin bilgileri ve yüz taraması silinmez. Yalnızca kasaya erişimi engellenir. Pasif halde kasaya erişmeye çalışılır ise belirlenmiş olan e-posta adresine uyarı maili gitmektedir. Bu kişiler istenilen takdirde aktif yapılabilir, bilgileri düzenlenebilir ve silinebilir.
+<br><br><b style="color:red;">Silme İşlemi:</b> Seçilen kişinin bilgilerini ve yüz taramasını sistemden tamamen siler. Kişi kasaya erişmek isterse yeniden <a target="_blank" href="{{url_for('yeni')}}">kayıt</a> olması gerekir.
+<br><br><b style="color:red;">Düzenleme İşlemi:</b> Seçilen kişinin bilgileri düzenlenebilir. TC no sistemde başkasına ait ise düzenleme işlemi gerçekleşmez.
+<br><br><b style="color:red;">Resim:</b> Kayıtlı kişinin fotoğrafını gösterir. (Kaydedilen 5. fotoğrafı)
+</p>
+<br>
+<h5 style="color:darkblue;font-weight:bold">*Kasaya Erişim</h5>
+<p>Kasaya erişim için kayıtlı olan kişinin yüz taraması yapılır. Tarama için yüz belirgin olacak şekilde sabit kalarak kameraya bakılmalıdır. İşlem yalnızca birkaç saniye sürer. Kişi sistemde bulunamaz veya pasif halde ise belirlenen e-postaya uyarı gider. Yüzü tanımlı olan kişiler ise kasaya erişir. Erişimi sağlayan kişinin bilgileri ve erişim saati <a target="_blank" href="{{url_for('hListe')}}">hareket</a> listesine eklenir.
+</p>
+<br>
+<h5 style="color:darkblue;font-weight:bold">*Hareket Listesi</h5>
+<p>Kasaya önceden erişim sağlamış kişiler <a href="{{url_for('hListe')}}" target="_blank">burada</a> listelenir. Kişinin bilgileri, erişim tarihi ve saati yer alır.</p>
+<br>
+</div>	
+  </body>
+</html>

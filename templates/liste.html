@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <title>Kişi Listesi</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+  </head>
+  <body>
+	
+		
+<!-- Uyarı Mesajı -->
+{% with messages = get_flashed_messages() %}
+	{% if messages %}
+		{% for message in messages %}
+			<h5 style="color:red;font-weight:bold">{{message.decode('utf-8')}}</h5>
+		{% endfor %}
+	{% endif %}
+{% endwith %}
+
+  <!-- Aktif LİSTE -->
+	<h5 style="font-weight:bold; color:darkblue">Aktif Kişi Listesi</h5>
+
+<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th scope="col">ID</th>
+	      <th scope="col">TC No</th>
+	      <th scope="col">Ad</th>
+	      <th scope="col">Soyad</th>
+
+	      <th scope="col">Aktif</th>
+
+
+	      <th scope="col" style="text-align:center">İşlemler</th>
+	      
+	    </tr>
+	  </thead>
+	  <tbody>
+{% for row in kListe %}		   
+	    <tr>
+	      <th scope="row">{{row["kisiID"]}} </th>
+	      <td>{{row["tc"]}} </td>
+	      <td>{{row["ad"]}}</td>
+	      <td>{{row["soyad"]}} </td>
+
+	      <td>{{row["aktif"]}} </td>
+
+	      <td><center><button class="btn btn-primary" data-toggle="modal" data-target="#m2-{{row["kisiID"]}}">Düzenle</button>&nbsp;
+	        {% if row[5]!=1 %}
+	          <a href="{{url_for('pasif', id=row[0])}}" class="btn btn-info" >Pasif</a>&nbsp;
+	   <button class="btn btn-danger" data-toggle="modal" data-target="#mm-{{row["kisiID"]}}">Sil</button>&nbsp;
+	    
+	{% endif %}
+		<button class="btn btn-warning" data-toggle="modal" data-target="#mm3-{{row["kisiID"]}}">Resim</button></center></td>
+	    
+</tr>
+
+	<!-- Modal -->
+	<div class="modal" id="mm-{{row["kisiID"]}}">
+	  <div class="modal-dialog modal-md moda-dialog-centered">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<h5 class="modal-title" id="">UYARI</h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+	      </div>
+	      <div class="modal-body">
+		<strong>{{row["tc"]}} - {{row["ad"]}} {{row["soyad"]}}</strong> kişisini silmek istediğinize emin misiniz?
+	      </div>
+	      <div class="modal-footer">
+		<a href="{{url_for('kisi_sil', id=row[0], aktif=row[4])}}" class="btn btn-primary">Evet</button>
+			     		
+		<a href="" class="btn btn-danger" data-dismiss="modal">İptal</a>
+		</div>
+	    </div>
+	  </div>
+	</div>
+
+<!-- Modal3 -->
+	<div class="modal" id="mm3-{{row["kisiID"]}}">
+	  <div class="modal-dialog modal-md moda-dialog-centered">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<h5 class="modal-title" id="">Kişi Resmi</h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+	      </div>
+	      <div class="modal-body">
+		
+		<center>
+<strong>{{row["tc"]}} - {{row["ad"]}} {{row["soyad"]}}</strong><br><br>
+<img src="/static/dataset/aktif/Kisi.{{row[0]}}.5.jpg" /></center>
+
+ 		</div>
+	      <div class="modal-footer">
+			     		
+		</div>
+	    </div>
+	  </div>
+	</div>
+
+<!-- Modal2 -->
+	<div class="modal" id="m2-{{row["kisiID"]}}">
+	  <div class="modal-dialog modal-md moda-dialog-centered">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<h5 class="modal-title" id="">Kişi Düzenle</h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+	      </div>
+	      <div class="modal-body">
+		<form autocomplete="off" action=" {{ url_for('kisi_duzenle', id=row[0], no=1) }}" method='POST'>
+	  
+		  <div class="form-group">
+			<input type="text" class="form-control" name="ad" placeholder="Ad" value="{{row["ad"]}}" required>
+		  </div>
+		  <div class="form-group">
+			<input type="text" class="form-control" name="soyad" placeholder="Soyad" value="{{row["soyad"]}}" required>
+		  </div>
+		  <div class="form-group">
+			<input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" minlength="11" maxlength="11" class="form-control" name="tc" placeholder="TC No" value="{{row["tc"]}}" required>
+		  </div>
+		  
+		  <button type="submit" class="btn btn-success">Kaydet</button>
+		 	
+	
+		</form>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	{% endfor %}
+	   
+	  </tbody>
+	</table>
+
+<!-- Pasif LİSTE -->
+	<h5 style="font-weight:bold; color:darkblue">Pasif Kişi Listesi</h5>
+
+<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th scope="col">ID</th>
+	      <th scope="col">TC No</th>
+	      <th scope="col">Ad</th>
+	      <th scope="col">Soyad</th>
+
+	      <th scope="col">Aktif</th>
+
+	      <th scope="col" style="text-align:center">İşlemler</th>
+	      
+	    </tr>
+	  </thead>
+	  <tbody>
+{% for row2 in kListe2 %}		   
+	    <tr>
+	      <th scope="row">{{row2["kisiID"]}} </th>
+	      <td>{{row2["tc"]}} </td>
+	      <td>{{row2["ad"]}}</td>
+	      <td>{{row2["soyad"]}} </td>
+
+	      <td>{{row2["aktif"]}} </td>
+
+	      <td><center><button class="btn btn-primary" data-toggle="modal" data-target="#m22-{{row2["kisiID"]}}">Düzenle</button>&nbsp;
+	        <a href="{{url_for('aktif', id=row2[0])}}" class="btn btn-info" >Aktif</a>
+	   &nbsp;
+		<button class="btn btn-danger" data-toggle="modal" data-target="#mm2-{{row2["kisiID"]}}">Sil</button>&nbsp;
+	     <button class="btn btn-warning" data-toggle="modal" data-target="#m33-{{row2["kisiID"]}}">Resim</button></center></td>
+	   
+</tr>
+
+	<!-- Modal -->
+	<div class="modal" id="mm2-{{row2["kisiID"]}}">
+	  <div class="modal-dialog modal-md moda-dialog-centered">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<h5 class="modal-title" id="">UYARI</h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+	      </div>
+	      <div class="modal-body">
+		<strong>{{row2["tc"]}} - {{row2["ad"]}} {{row2["soyad"]}}</strong> kişisini silmek istediğinize emin misiniz?
+	      </div>
+	      <div class="modal-footer">
+		<a href="{{url_for('kisi_sil', id=row2[0], aktif=row2[4])}}" class="btn btn-primary">Evet</button>
+			     		
+		<a href="" class="btn btn-danger" data-dismiss="modal">İptal</a>
+		</div>
+	    </div>
+	  </div>
+	</div>
+
+<!-- Modal3 -->
+	<div class="modal" id="m33-{{row2["kisiID"]}}">
+	  <div class="modal-dialog modal-md moda-dialog-centered">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<h5 class="modal-title" id="">Kişi Resmi</h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+	      </div>
+	      <div class="modal-body">
+		
+	      
+		<center>
+<strong>{{row2["tc"]}} - {{row2["ad"]}} {{row2["soyad"]}}</strong> <br><br>
+<img src="/static/dataset/pasif/Kisi.{{row2[0]}}.5.jpg" /></center>
+
+ 		</div>
+	      <div class="modal-footer">
+			     		
+		</div>
+	    </div>
+	  </div>
+	</div>
+
+<!-- Modal2 -->
+	<div class="modal" id="m22-{{row2["kisiID"]}}">
+	  <div class="modal-dialog modal-md moda-dialog-centered">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<h5 class="modal-title" id="">Kişi Düzenle</h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+	      </div>
+	      <div class="modal-body">
+		<form autocomplete="off" action=" {{ url_for('kisi_duzenle', id=row2[0], no=0) }}" method='POST'>
+	  
+		  <div class="form-group">
+			<input type="text" class="form-control" name="ad" placeholder="Ad" value="{{row2["ad"]}}" required>
+		  </div>
+		  <div class="form-group">
+			<input type="text" class="form-control" name="soyad" placeholder="Soyad" value="{{row2["soyad"]}}" required>
+		  </div>
+		  <div class="form-group">
+			<input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" minlength="11" maxlength="11" class="form-control" name="tc" placeholder="TC No" value="{{row2["tc"]}}" required>
+		  </div>
+		  
+		  <button type="submit" class="btn btn-success">Kaydet</button>
+		 	
+	
+		</form>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	{% endfor %}
+	   
+	  </tbody>
+	</table>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  </body>
+</html>

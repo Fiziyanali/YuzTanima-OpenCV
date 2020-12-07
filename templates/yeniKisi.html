@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <title>Kişi Ekle</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+  </head>
+  <body>
+
+  <!-- FORM -->
+	<form autocomplete="off" action="{{ url_for('yeniKisiEkle') }}" method='POST'>
+	  <h4>Yeni Kişi Ekle<h4>
+	  <div class="form-group">
+		<input type="text" class="form-control" name="ad" placeholder="Ad" required>
+	  </div>
+	  <div class="form-group">
+		<input type="text" class="form-control" name="soyad" placeholder="Soyad" required>
+	  </div>
+	  <div class="form-group">
+		<input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" minlength="11" maxlength="11" class="form-control" name="tc" placeholder="TC No" required>
+	  </div>
+
+ 	 {% if kisi == 0 %}
+	  <div class="form-check">
+		<label style="font-weight:500;font-size:14px;"><input type="checkbox" class="form-check-input" name="daimi" value="True"> Daimi Kullanıcı</label>
+	
+	  </div>
+ {% endif %}
+{% if kisi == 1 %}
+	  <div class="form-check">
+		<label style="font-weight:500;font-size:14px;"><input type="checkbox" class="form-check-input" name="daimi" value="True" disabled="True"> Daimi Kullanıcı</label>
+	
+	  </div>
+ {% endif %}
+<br><h4><b style="color:red;">Not:</b> Daimi kullanıcı yalnızca bir kez eklenebilir ve asla pasif olamaz veya silinemez.</h4>
+
+	  <h5 style="color:darkblue">**Lütfen kameraya bakıp bekleyiniz. İşlem birkaç dakika sürecektir..</h5>
+
+	  
+	  <button type="submit" class="btn btn-success">Ekle</button>
+	  <br>
+	  <!-- Uyarı Mesajı -->
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				{% for message in messages %}
+					<h5 style="color:red">{{message.decode('utf-8')}}</h5>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+	</form>
+
+  </body>
+
+</html>
