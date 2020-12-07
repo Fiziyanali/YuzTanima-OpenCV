@@ -1,5 +1,5 @@
 # YuzTanima-OpenCV
- Raspberry pi3 ile yüz tanımalı güvenlikli kasa projesi.
+Python flask ile arayüz oluşturulmuştur. 1 kanallı röle kart ve mini selenoid kilit Raspberry'e bağlanmıştır. Yüz tanıma işlemi başarılı olursa kilit 3saniye açık kalmaktadır.
 
 
 # Kullanım Bilgileri
