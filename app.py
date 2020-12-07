@@ -362,7 +362,7 @@ def mail():
                       
     s = smtplib.SMTP('smtp.gmail.com', 587)  # Protokol (server)
     s.starttls() 
-    s.login("guvenliKasaErisim@gmail.com", "kasa.erisim.001") #mail icin giris 
+    s.login("guvenliKasaErisim@gmail.com", "MailSifresiYazilacak") #mail icin giris 
     s.sendmail("guvenliKasaErisim@gmail.com", "beyzagumus64@gmail.com", msg.as_string()) #mail gonderme islemi
     s.quit() #server cikis
     return redirect(url_for('yuzTanima'))
