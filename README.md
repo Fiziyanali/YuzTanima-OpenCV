@@ -1,5 +1,5 @@
 # YuzTanima-OpenCV
-Python flask ile arayüz oluşturulmuştur. 1 kanallı röle kart ve mini selenoid kilit Raspberry'e bağlanmıştır. Yüz tanıma işlemi başarılı olursa kilit 3saniye açık kalmaktadır.
+Python flask ile arayüz oluşturulmuştur. 1 kanallı röle kart ve mini selenoid kilit Raspberry'e bağlanmıştır. "Bağlantılar" isimli resimde gösterilmiştir. Yüz tanıma işlemi başarılı olursa kilit 3 saniye açık kalmaktadır.
 
 
 # Kullanım Bilgileri
