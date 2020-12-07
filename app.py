@@ -38,7 +38,7 @@ conn.execute('CREATE TABLE IF NOT EXISTS kisi (kisiID INTEGER PRIMARY KEY AUTOIN
 conn.execute('CREATE TABLE IF NOT EXISTS hareket (hID INTEGER PRIMARY KEY AUTOINCREMENT, tc int(11) not null, ad nvarchar(20) not null, soyad nvarchar(20) not null , tarih datetime)')
 
 AdminSifre=sha256_crypt.hash('aa') #veritabanina gonderilen sifreyi hashliyoruz
-#conn.execute("INSERT INTO yetki(kullanici_adi,sifre) values (?,?)", ('admin',AdminSifre))
+conn.execute("INSERT INTO yetki(kullanici_adi,sifre) values (?,?)", ('admin',AdminSifre))
 conn.commit() #islemleri kaydet
 conn.close() #veritabani baglantisini kapat
 
